@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-info">
+            <tr>
+                <th>Currency</th>
+                <th>BTC Price</th>
+                <th>24h HIGH</th>
+                <th>24h LOW</th>
+                <th>24h VARIATION</th>
+                <th>MARKET CAP</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for key,value in currency_fulldata.DISPLAY.items %}
+            <tr>
+                <td>
+                    {{ key }}
+                </td>
+                <td>
+                    {{ value.USD.PRICE }}
+                </td>
+                <td>
+                    {{ value.USD.HIGHDAY }}
+                </td>
+                <td>
+                    {{ value.USD.LOWDAY }}
+                </td>
+                <td>
+                    {{ value.USD.CHANGEDAY }}
+                </td>
+                 <td>
+                    {{ value.USD.MKTCAP }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<div class="container">
+    <br>
+    <h1>Crypto craziest news!</h1>
+    <br>
+        <div class="container">
+            <div class="row">
+                 {% for x in news.Data %}
+                <div class="col-sm-4 d-flex">
+                        <div class="card flex-fill" style="width: 18rem;">
+                            <a href="{{ x.url }}">
+                                <img class="card-img-top" src="{{ x.imageurl }}"  alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ x.title }}</h5>
+                                <p class="card-text">{{ x.body }}</p>
+                                <a href="{{ x.url }}" class="btn btn-secondary">Check out!</a>
+                            </div>
+                        </div>
+                    <br>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+</div>
+
+{% endblock %}

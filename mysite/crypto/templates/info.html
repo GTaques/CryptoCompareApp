@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for key,value in info.DISPLAY.items %}
+    <div class="jumbotron">
+      <h3 class="display-4">{{ key }}</h3>
+        <strong>Current Price</strong>
+      <p class="lead">{{ value.USD.PRICE }}</p>
+      <hr class="my-4">
+      <strong>24 hours High Price</strong>
+      <p class="lead">{{ value.USD.HIGHDAY }}</p>
+      <hr class="my-4">
+         <strong>24 hours Low Price</strong>
+      <p class="lead">{{ value.USD.LOWDAY }}</p>
+      <hr class="my-4">
+         <strong>24 hours Variation Price</strong>
+      <p class="lead">{{ value.USD.CHANGEDAY }}</p>
+      <hr class="my-4">
+         <strong>Market Cap</strong>
+      <p class="lead">{{ value.USD.MKTCAP }}</p>
+      <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'home' %}">
+        {% csrf_token %}
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Back</button>
+    </form>
+    </div>
+{% endfor %}
+
+{% endblock %}
